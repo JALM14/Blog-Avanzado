@@ -1,0 +1,22 @@
+<p style="color: green"><%= notice %></p>
+
+<h1><%= @post.title %></h1>
+
+<p>
+  <strong>Contenido:</strong><br>
+  <%= @post.content %>
+</p>
+
+<p>
+  <strong>Autor:</strong>
+  <%= @post.user.email if @post.user %>
+</p>
+
+<div>
+  <% if user_signed_in? && @post.user == current_user %>
+    <%= link_to "Editar publicación", edit_post_path(@post), class: "text-blue-600" %> |
+    <%= link_to "Eliminar publicación", @post, method: :delete, data: { confirm: "¿Estás seguro que quieres eliminar esto?" }, class: "text-red-600" %>
+  <% end %>
+
+  <%= link_to "Volver a publicaciones", posts_path, class: "text-gray-600 block mt-4" %>
+</div>
